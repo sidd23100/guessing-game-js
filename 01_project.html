@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Gusseing Game</title>
+</head>
+
+<style>
+    .grid {
+        width: 400px;
+        height: 250px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        border: 2px solid lawngreen;
+        padding: 100px 50px;
+        border-radius: 20px;
+    }
+
+    .label {
+        text-align: left;
+    }
+
+    #number_input {
+        border-radius: 20px;
+        border-color: lawngreen;
+        box-shadow: 0 4px 8px 0 limegreen;
+        padding: 10px;
+    }
+
+    #number_input:active {
+        border: none;
+    }
+
+    .btn {
+        border-radius: 20px;
+        border-color: lawngreen;
+        box-shadow: 0 4px 8px 0 limegreen;
+        background-color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 12px;
+        cursor: pointer;
+    }
+
+    .gusseing_number {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .counter {
+        font-size: 18px;
+    }
+
+    .counter span {
+        font-weight: bolder;
+    }
+
+    .footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media screen and (max-width : 768px) {
+        .grid{
+            height: 300px;
+            width: 300px;
+            position: absolute;
+        }
+    }
+
+</style>
+
+
+<body>
+
+    <div class="grid">
+
+        <label for="" class="label">Gusse a number Between 0-10 </label>
+        <input name="number_input" type="text" id="number_input">
+        <button class="btn">Play</button>
+        <h2 class="gusseing_number"></h2>
+
+        <div class="footer">
+            <p class="counter">Attempt Left : <span class="steps">7</span></p>
+            <button class="btn Reset">Reset</button>
+        </div>
+
+    </div>
+
+
+    <script>
+        const input = document.querySelector("#number_input");
+        const btn = document.querySelector(".btn");
+        const gusseing_number = document.querySelector(".gusseing_number")
+        const count = document.querySelector(".steps")
+        const Reset = document.querySelector(".Reset")
+
+        let randomNumber = Math.floor(Math.random() * 10 + 1);
+        let attempt = 10;
+        count.textContent = attempt
+
+        Reset.addEventListener("click" , () => {
+            btn.disabled = false;
+            attempt = 10;
+            count.textContent = attempt;
+            gusseing_number.textContent = ""
+            input.value = ""
+            input.disabled = false
+        })
+
+
+        btn.addEventListener("click", () => {
+
+            let userGuess = Number(input.value);
+
+            if (!userGuess) {
+                gusseing_number.textContent = "Hey Dude, to play game please enter a number."
+                return;
+            }
+
+            if (userGuess === randomNumber) {
+                gusseing_number.textContent = "You Won! You are Geninus Dude...."
+                btn.disabled = true;
+                input.disabled = true;
+                attempt = 0;
+                return;
+            }
+
+            if (userGuess > randomNumber) {
+                gusseing_number.textContent = "Too High..."
+                attempt--;
+                count.textContent = attempt
+            }
+            else if (userGuess < randomNumber) {
+                gusseing_number.textContent = "Too Low..."
+                attempt--;
+                count.textContent = attempt;
+            }
+
+            if (attempt === 0) {
+                count.textContent = 0
+                gusseing_number.textContent = "You Lost! Dude.. Better Luck Next Time..."
+                btn.disabled = true;
+                input.disabled = true;
+            }
+
+            input.value = ""
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
