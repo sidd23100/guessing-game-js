@@ -84,13 +84,13 @@
 
     <div class="grid">
 
-        <label for="" class="label">Gusse a number Between 0-10 </label>
+        <label for="" class="label">Gusse a number Between 1-10 </label>
         <input name="number_input" type="text" id="number_input">
         <button class="btn">Play</button>
         <h2 class="gusseing_number"></h2>
 
         <div class="footer">
-            <p class="counter">Attempt Left : <span class="steps">7</span></p>
+            <p class="counter">Attempt Left : <span class="steps"></span></p>
             <button class="btn Reset">Reset</button>
         </div>
 
@@ -105,17 +105,17 @@
         const Reset = document.querySelector(".Reset")
 
         let randomNumber = Math.floor(Math.random() * 10 + 1);
-        let attempt = 10;
+        let attempt = 5;
         count.textContent = attempt
 
         Reset.addEventListener("click" , () => {
             btn.disabled = false;
-            attempt = 10;
+            input.disabled = false
+            attempt = 5;
+            randomNumber = Math.floor(Math.random() * 10 + 1)
             count.textContent = attempt;
             gusseing_number.textContent = ""
             input.value = ""
-            input.disabled = false
-                    let randomNumber = Math.floor(Math.random() * 10 + 1);
         })
 
 
