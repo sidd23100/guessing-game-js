@@ -105,13 +105,13 @@
         const Reset = document.querySelector(".Reset")
 
         let randomNumber = Math.floor(Math.random() * 10 + 1);
-        let attempt = 5;
+        let attempt = 3;
         count.textContent = attempt
 
         Reset.addEventListener("click" , () => {
             btn.disabled = false;
             input.disabled = false
-            attempt = 5;
+            attempt = 3;
             randomNumber = Math.floor(Math.random() * 10 + 1)
             count.textContent = attempt;
             gusseing_number.textContent = ""
