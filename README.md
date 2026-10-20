@@ -53,7 +53,7 @@ The player has **10 attempts** to guess the correct number.
 
 ## 👨‍💻 Author
 **Siddhant Sharma**  
-Frontend / JavaScript Developer  
+JavaScript Developer  
 
 ---
 
